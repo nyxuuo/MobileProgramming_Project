@@ -21,6 +21,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--profile-->
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false">
+        <!-- false biar ga diakses dr luar-->
+        </activity>
+
+        <!--profile-->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false">
+            <!-- false biar ga diakses dr luar-->
+        </activity>
+
     </application>
 
 </manifest>
