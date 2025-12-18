@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- buat foto bukunya, pake placeholder dlu yah -->
+    <ImageView
+        android:id="@+id/ivBookCover"
+        android:src="@drawable/ic_placeholder_book"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop" />
+
+    <!-- JUDUL -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:text="The Alchemist"
+        android:textStyle="bold"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <!-- authorny -->
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:text="Paulo Coelho"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <!-- rating (info) -->
+    <TextView
+        android:id="@+id/tvInfo"
+        android:text="13+ \nStock:15"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
