@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MobileProgramming_Project" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.MobileProgramming_Project" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/yellow</item>
         <item name="android:statusBarColor">@color/yellow</item>
         <item name="android:fontFamily">@font/fredoka_regular</item>

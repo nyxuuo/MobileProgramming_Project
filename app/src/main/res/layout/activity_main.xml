@@ -5,92 +5,104 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:orientation="vertical"
-    android:layout_marginTop="120dp">
+    tools:context=".MainActivity"
+    android:paddingTop="40dp">
 
+    <!-- TOP NAVBAR -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:title="BeeLib"
+        app:titleTextColor="@android:color/black"
+        app:menu="@menu/top_nav"/>
+
+    <!-- MAIN CONTENT -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
+        <!-- HELLO SECTION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp"
-            >
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hello, "
                     android:textSize="24sp"
-                    android:textColor="@android:color/black"
-                    />
+                    android:textColor="@android:color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/usrname"
                     android:textSize="24sp"
-                    android:textColor="@android:color/black"
-                    />
+                    android:textColor="@android:color/black"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bee"
-                    />
-
+                    android:src="@drawable/bee"/>
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ready to read more?"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
-                android:paddingBottom="40dp"
-                />
-
+                android:paddingBottom="40dp"/>
         </LinearLayout>
 
-
+        <!-- BORROWED BOOK -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/bckg_borrowed"
-            android:padding="20dp"
-            >
+            android:padding="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Currently Borrowed Book"
                 android:textSize="24sp"
-                android:textColor="@color/white"
-                />
+                android:textColor="@color/white"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recyclerView"
                 android:padding="8dp"
-                />
-
-
+                android:overScrollMode="never"/>
         </LinearLayout>
 
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#F4BC43"
+            app:itemIconTint="@color/white"
+            app:itemRippleColor="@android:color/transparent"
+            app:menu="@menu/bottom_nav"
+            app:labelVisibilityMode="unlabeled"/>
     </LinearLayout>
-
-
 </LinearLayout>
