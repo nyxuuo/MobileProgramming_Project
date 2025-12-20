@@ -3,8 +3,8 @@
 TEAM MEMBERS:
 1. 2702287150 - Claribel Aurelia Tan
 2. 2702222541 - Jesslyn Abigail
-3. 2702247140 - Leonard Christian
-\=====================================
+3. 2702247140 - Leonard Christian\
+=====================================
 
 Aplikasi simple dengan Java sebagai bahasa utama, BeeLib adalah aplikasi yang bertujuan untuk menyimpan, meminjam, melihat, mengingatkan pengguna atas aktivitasnya di perpustakaan.\
 Figma Link: https://www.figma.com/design/EcRMDAjSpl0EJcUKtkPrec/BeeLib?node-id=0-1&t=nfrTVh82h4gJz2uT-1
