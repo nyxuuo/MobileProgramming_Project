@@ -1,5 +1,6 @@
 # MobileProgramming_Project
 Aplikasi simple dengan Java sebagai bahasa utama, BeeLib adalah aplikasi yang bertujuan untuk menyimpan, meminjam, melihat, mengingatkan pengguna atas aktivitasnya di perpustakaan.
+Figma Link: https://www.figma.com/design/EcRMDAjSpl0EJcUKtkPrec/BeeLib?node-id=0-1&t=nfrTVh82h4gJz2uT-1
 
 library yang digunakan:
 * Firebase BOM: Bill of Materials dari firebase, untuk memastikan semua tools yang digunakan dari firebase berjalan tanpa adanya konflik versi.
