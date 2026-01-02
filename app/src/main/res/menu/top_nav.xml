@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/action_search"
+        app:actionLayout="@layout/search_bar"
+        android:title=""
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_notification"
+        android:title="Notification"
+        android:icon="@drawable/notification"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_profile"
+        android:title="Profile"
+        android:icon="@drawable/profile"
+        app:showAsAction="always"/>
+</menu>
