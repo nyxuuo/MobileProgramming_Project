@@ -34,8 +34,7 @@ public class SignIn extends AppCompatActivity {
             String savedPass = prefs.getString("password", "");
 
             if (
-                    etUsername.getText().toString().equals(savedUser) &&
-                            etPassword.getText().toString().equals(savedPass)
+                    etUsername.getText().toString().equals(savedUser) && etPassword.getText().toString().equals(savedPass)
             ) {
                 prefs.edit().putBoolean("isLoggedIn", true).apply();
 

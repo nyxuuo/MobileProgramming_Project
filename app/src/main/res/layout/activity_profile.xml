@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:padding="11dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="40dp">
 
     <!-- header profile-->
     <LinearLayout
@@ -36,7 +37,7 @@
             <!-- buat nama jg pake placeholoder dl-->
             <TextView
                 android:id="@+id/tvName"
-                android:text="Victoria Beverli"
+                android:text=""
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -44,7 +45,6 @@
             <!-- placeholder username, text dari strings.xml-->
             <TextView
                 android:id="@+id/tvUsername"
-                android:text="@string/username"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -112,5 +112,16 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#C4C4C4"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogout"
+        android:text="LogOut"
+        android:backgroundTint="@color/yellow"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        />
 
 </LinearLayout>

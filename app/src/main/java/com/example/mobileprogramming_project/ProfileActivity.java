@@ -1,5 +1,6 @@
 package com.example.mobileprogramming_project;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +18,22 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvMenuSettings = findViewById(R.id.tvMenuSettings);
         TextView tvMenuAboutUs = findViewById(R.id.tvMenuAboutUs);
         TextView tvMenuHelp = findViewById(R.id.tvMenuHelp);
+
+        TextView tvName = findViewById(R.id.tvName);
+        TextView tvUsername = findViewById(R.id.tvUsername);
+
+        SharedPreferences prefs =
+                getSharedPreferences("BeeLibPrefs", MODE_PRIVATE);
+
+        String username = prefs.getString("username", null);
+
+        if (username != null) {
+            tvName.setText(username);
+            tvUsername.setText("@" + username);
+        } else {
+            tvName.setText("Unknown User");
+            tvUsername.setText("@unknown");
+        }
 
         //placeholder dulu
         btnEditProfile.setOnClickListener(v ->

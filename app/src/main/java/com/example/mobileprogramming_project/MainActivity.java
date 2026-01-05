@@ -104,11 +104,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if (item.getItemId() == R.id.action_profile){
-            Intent intent = new Intent(MainActivity.this, Profile.class);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.action_notification) {
-            startActivity(new Intent(this, Notification.class));
+            startActivity(new Intent(this, NotificationActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
