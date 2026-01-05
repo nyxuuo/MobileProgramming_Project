@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!-- tombol back-->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:src="@drawable/ic_back"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+
+        <!--notif-->
+        <TextView
+            android:text="Notification"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- settings -->
+        <ImageView
+            android:id="@+id/btnSettings"
+            android:src="@drawable/ic_settings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp" />
+
+        <!-- profile -->
+        <ImageView
+            android:id="@+id/btnProfile"
+            android:src="@drawable/ic_profile"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+
+    </LinearLayout>
+
+    <!-- isi notif-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!--placeholder notif-->
+        <TextView
+            android:id="@+id/tvNotifMessage"
+            android:text="Reminder: You have 2 days left to return your book!"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- placeholder date -->
+        <TextView
+            android:id="@+id/tvNotifDate"
+            android:text="19 Nov 2025, 14:35"
+            android:textSize="12sp"
+            android:textColor="#C4C4C4"
+            android:gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+

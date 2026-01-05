@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="11dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- header profile-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+
+        <!-- buat profile, blum sambung db. logo profile placeholder dl  -->
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_profile" />
+
+        <!-- Linear layout buat name & username-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <!-- buat nama jg pake placeholoder dl-->
+            <TextView
+                android:id="@+id/tvName"
+                android:text="Victoria Beverli"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <!-- placeholder username, text dari strings.xml-->
+            <TextView
+                android:id="@+id/tvUsername"
+                android:text="@string/username"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    <!-- edit button (belom ada pagenya, last prio)-->
+    <Button
+        android:id="@+id/btnEditProfile"
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C4C4C4"
+        android:textColor="#000000"/>
+
+    </LinearLayout>
+
+    <!-- divider, buat settings, about us, help (page jg blm ada)-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C4C4C4"/>
+
+    <!-- settings-->
+    <TextView
+        android:id="@+id/tvMenuSettings"
+        android:text="Settings"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- divider, buat settings, about us, help (page jg blm ada)-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C4C4C4"/>
+
+    <!-- ABOUT US-->
+    <TextView
+        android:id="@+id/tvMenuAboutUs"
+        android:text="About us"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- divider, buat settings, about us, help (page jg blm ada)-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C4C4C4"/>
+
+    <!-- HELP-->
+    <TextView
+        android:id="@+id/tvMenuHelp"
+        android:text="Help"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- divider, buat settings, about us, help (page jg blm ada)-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C4C4C4"/>
+
+</LinearLayout>
