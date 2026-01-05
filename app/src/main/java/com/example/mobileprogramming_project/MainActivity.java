@@ -1,5 +1,7 @@
 package com.example.mobileprogramming_project;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +28,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("BeeLibPrefs", MODE_PRIVATE);
+
+        if (!prefs.getBoolean("isLoggedIn", false)) {
+            startActivity(new Intent(this, SignUp.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
+
+
         db = FirebaseFirestore.getInstance();
         BookDao.createBook(db, new Book("Title", "Author", "Description", "Genre", 100, 5, 2, 18, 2023));
 //        BookDao.readBooks(db);
@@ -35,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = (new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setLayoutManager(layoutManager);
+
+        TextView usernameText = findViewById(R.id.usrname);
+        usernameText.setText(prefs.getString("username", "User"));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,5 +100,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == R.id.action_profile){
+            Intent intent = new Intent(MainActivity.this, Profile.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.action_notification) {
+            startActivity(new Intent(this, Notification.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

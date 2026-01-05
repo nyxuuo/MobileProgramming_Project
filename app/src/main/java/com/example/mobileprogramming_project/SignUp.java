@@ -1,10 +1,15 @@
 package com.example.mobileprogramming_project;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,14 +26,15 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         TextView tvBirthday = findViewById(R.id.tvBirthday);
         ImageView btnCalendar = findViewById(R.id.btnCalendar);
+
+        EditText etUsername = findViewById(R.id.username);
+        EditText etPassword = findViewById(R.id.password);
+        EditText etConfirmPassword = findViewById(R.id.confirm_password);
+        Button btnSignup = findViewById(R.id.btnSignup);
+        TextView tvSigninHere = findViewById(R.id.tvSigninHere);
 
         View.OnClickListener openCalendar = new View.OnClickListener() {
             @Override
@@ -48,8 +54,39 @@ public class SignUp extends AppCompatActivity {
         };
 
         tvBirthday.setOnClickListener(openCalendar);
-
         btnCalendar.setOnClickListener(openCalendar);
+
+        btnSignup.setOnClickListener(v ->{
+            String inputUsername = etUsername.getText().toString().trim();
+
+            String pass = etPassword.getText().toString();
+            String confirm = etConfirmPassword.getText().toString();
+
+            if (inputUsername.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!pass.equals(confirm)) {
+                etConfirmPassword.setError("Password not match");
+                return;
+            }
+
+            SharedPreferences prefs = getSharedPreferences("BeeLibPrefs", MODE_PRIVATE);
+            prefs.edit()
+                    .putString("username", inputUsername)
+                    .putString("password", pass)
+                    .putBoolean("isLoggedIn", true)
+                    .apply();
+
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
+
+        tvSigninHere.setOnClickListener(v -> {
+            startActivity(new Intent(SignUp.this, SignIn.class));
+            finish();
+        });
 
     }
 }
