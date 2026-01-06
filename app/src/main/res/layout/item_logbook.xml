@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_placeholder_book"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginStart="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTitle"
+            android:text="The Alchemist"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvAuthor"
+            android:text="Paulo Coelho"
+            android:textColor="#777777"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="13+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvBorrowed"
+            android:text="Borrowed: 12/10/2025"/>
+
+        <TextView
+            android:id="@+id/tvReturned"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Returned: -"
+            android:textColor="#4CAF50"
+            android:visibility="gone"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvDue"
+            android:text="Due: 12/11/2025"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvStatus"
+            android:text="Not Returned"
+            android:background="#DDDDDD"
+            android:padding="6dp"/>
+    </LinearLayout>
+</LinearLayout>
