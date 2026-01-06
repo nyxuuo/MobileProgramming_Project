@@ -30,13 +30,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <!-- settings -->
-        <ImageView
-            android:id="@+id/btnSettings"
-            android:src="@drawable/ic_settings"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp" />
+<!--        &lt;!&ndash; settings &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/btnSettings"-->
+<!--            android:src="@drawable/ic_settings"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_marginEnd="16dp" />-->
 
         <!-- profile -->
         <ImageView

@@ -16,7 +16,7 @@
     <!-- JUDUL -->
     <TextView
         android:id="@+id/tvTitle"
-        android:text="The Alchemist"
+        android:text=""
         android:textStyle="bold"
         android:layout_marginTop="6dp"
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
     <!-- authorny -->
     <TextView
         android:id="@+id/tvAuthor"
-        android:text="Paulo Coelho"
+        android:text=""
         android:textSize="12sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,10 +35,20 @@
     <!-- rating (info) -->
     <TextView
         android:id="@+id/tvInfo"
-        android:text="13+ \nStock:15"
+        android:text=""
         android:textSize="12sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+
+    <!-- button utk return-->
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:backgroundTint="#F44336"
+        android:textColor="@android:color/white"/>
+
 
 </LinearLayout>

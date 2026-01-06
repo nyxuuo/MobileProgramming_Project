@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="11dp"
+    android:padding="1dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -112,5 +113,22 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#C4C4C4"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+    <!-- bottom navbar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#F4BC43"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="@android:color/transparent"
+        app:menu="@menu/bottom_nav"
+        app:labelVisibilityMode="unlabeled"/>
 
 </LinearLayout>
