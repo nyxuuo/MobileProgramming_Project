@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mobileprogramming_project"
+    namespace = "com.example.aolmobileprogramming"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.mobileprogramming_project"
+        applicationId = "com.example.aolmobileprogramming"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

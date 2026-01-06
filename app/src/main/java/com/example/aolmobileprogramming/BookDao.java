@@ -1,4 +1,4 @@
-package com.example.mobileprogramming_project;
+package com.example.aolmobileprogramming;
 
 import android.util.Log;
 
@@ -61,26 +61,46 @@ public class BookDao {
                 .addOnFailureListener(e -> Log.w("Firestore", "Error updating document", e));
     }
 
-    public static void readBooks(FirebaseFirestore db, BookCallBack callBack) {
-        db.collection("books")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful()){
-                        callBack.onError(task.getException());
-                        return;
-                    }
 
+    public static void readBorrowedBooks(FirebaseFirestore db, BookCallBack callBack) {
+        db.collection("books")
+                .whereGreaterThan("borrowed", 0)
+                .limit(3)
+                .get()
+                .addOnSuccessListener(query -> {
                     List<Book> books = new ArrayList<>();
 
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Book book = document.toObject(Book.class);
-                        book.setId(document.getId());
+                    for (QueryDocumentSnapshot doc : query) {
+                        Book book = doc.toObject(Book.class);
+                        book.setId(doc.getId());
                         books.add(book);
                     }
+
                     callBack.onSuccess(books);
                 })
                 .addOnFailureListener(callBack::onError);
     }
+
+    //buat all available book
+    public static void readAvailableBooks(FirebaseFirestore db, BookCallBack callBack) {
+        db.collection("books")
+                .whereGreaterThan("stock", 0)
+                .get()
+                .addOnSuccessListener(query -> {
+                    List<Book> books = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot doc : query) {
+                        Book book = doc.toObject(Book.class);
+                        book.setId(doc.getId());
+                        books.add(book);
+                    }
+
+                    callBack.onSuccess(books);
+                })
+                .addOnFailureListener(callBack::onError);
+    }
+
+
 
     public static void deleteBook(FirebaseFirestore db, String docId) {
         db.collection("books").document(docId)

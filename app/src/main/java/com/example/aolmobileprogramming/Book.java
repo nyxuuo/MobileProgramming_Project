@@ -1,4 +1,4 @@
-package com.example.mobileprogramming_project;
+package com.example.aolmobileprogramming;
 
 public class Book {
     public String getTitle() {

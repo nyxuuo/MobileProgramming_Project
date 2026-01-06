@@ -1,8 +1,10 @@
-package com.example.mobileprogramming_project;
+package com.example.aolmobileprogramming;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +32,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(android.R.layout.simple_list_item_2, parent, false);
+                .inflate(R.layout.item_book, parent, false);
         return new BookViewHolder(view);
     }
 
@@ -40,7 +42,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         holder.tvTitle.setText(book.getTitle());
         holder.tvAuthor.setText(book.getAuthor());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), SectionBookActivity.class);
+
+            intent.putExtra("BOOK_ID", book.getId());
+            intent.putExtra("BOOK_TITLE", book.getTitle());
+            intent.putExtra("BOOK_AUTHOR", book.getAuthor());
+            intent.putExtra("BOOK_DESC", book.getDescription());
+
+            v.getContext().startActivity(intent);
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -69,12 +83,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     }
 
     static class BookViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvAuthor;
+        ImageView ivCover;
+        TextView tvTitle, tvAuthor, tvGenre, tvStock;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(android.R.id.text1);
-            tvAuthor = itemView.findViewById(android.R.id.text2);
+            ivCover = itemView.findViewById(R.id.ivCover);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvAuthor = itemView.findViewById(R.id.tvAuthor);
+            tvGenre = itemView.findViewById(R.id.tvGenre);
+            tvStock = itemView.findViewById(R.id.tvStock);
         }
     }
+
 }

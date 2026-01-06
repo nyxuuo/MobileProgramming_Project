@@ -1,5 +1,6 @@
-package com.example.mobileprogramming_project;
+package com.example.aolmobileprogramming;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,22 +16,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     BookAdapter bookAdapter;
+    BookAdapter allBookAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        db = FirebaseFirestore.getInstance();
-        BookDao.createBook(db, new Book("Title", "Author", "Description", "Genre", 100, 5, 2, 18, 2023));
+//        BookDao.createBook(db, new Book("Title", "Author", "Description", "Genre", 100, 5, 2, 18, 2023));
 //        BookDao.readBooks(db);
 //        BookDao.updateBook(db, "xlXCEp8tn0IJj72h3bud", "New Title", "New Author", "New Description", "New Genre", 200, 10, 5, 16, 2022);
 //        BookDao.deleteBook(db, "xlXCEp8tn0IJj72h3bud");
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = (new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -42,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         bookAdapter = new BookAdapter();
         recyclerView.setAdapter(bookAdapter);
 
-        BookDao.readBooks(db, new BookDao.BookCallBack() {
+        db = FirebaseFirestore.getInstance();
+
+        BookDao.readBorrowedBooks(db, new BookDao.BookCallBack() {
             @Override
             public void onSuccess(List<Book> books) {
                 bookAdapter.setBooks(books);
@@ -54,7 +61,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        BookDao.readAvailableBooks(db, new BookDao.BookCallBack() {
+            @Override
+            public void onSuccess(List<Book> books) {
+                allBookAdapter.setBooks(books);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        //buat see more
+        findViewById(R.id.btnSeeMore).setOnClickListener(v -> {
+            startActivity(new Intent(this, BorrowedBookActivity.class));
+        });
+
+
+        //buat show all
+        RecyclerView rvAllBooks = findViewById(R.id.rvAllBooks);
+        rvAllBooks.setLayoutManager(new LinearLayoutManager(this));
+
+        allBookAdapter = new BookAdapter();
+        rvAllBooks.setAdapter(allBookAdapter);
+
+
+        setupBottomNavigation();
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,4 +118,55 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    //bottom navigation
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_home) {
+                return true;
+            }
+            else if (id == R.id.nav_borrowed_book) {
+                startActivity(new Intent(this, BorrowedBookActivity.class));
+                return true;
+            }
+
+
+            else if (id == R.id.nav_book_section) {
+                startActivity(new Intent(this, SectionBookActivity.class));
+                return true;
+            }
+
+            else if (id == R.id.nav_logbook) {
+                startActivity(new Intent(this, LogBookActivity.class));
+                return true;
+            }
+
+            return false;
+        });
+    }
+
+
+    //buat top (profile & notif)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_notification) {
+            startActivity(new Intent(this, NotificationActivity.class));
+            return true;
+        }
+        else if (id == R.id.action_profile) {
+            startActivity(new Intent(this, ProfileActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
+
+
