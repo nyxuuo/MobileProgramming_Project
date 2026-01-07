@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         holder.tvTitle.setText(book.getTitle());
         holder.tvAuthor.setText(book.getAuthor());
+
+        String placeholder_image = "";
+
+        Glide.with(holder.itemView.getContext())
+                .load(book.getImage_url())
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.broken_image)
+                .into(holder.ivCover);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), SectionBookActivity.class);

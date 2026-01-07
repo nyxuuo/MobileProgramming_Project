@@ -1,9 +1,7 @@
 package com.example.aolmobileprogramming;
 
 public class Book {
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
     public void setTitle(String title) {
         this.title = title;
@@ -32,6 +30,10 @@ public class Book {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    public String getImage_url() { return image_url; }
+
+    public void setImage_url(String image_url) { this.image_url = image_url; }
 
     public int getPages() {
         return pages;
@@ -82,11 +84,12 @@ public class Book {
     }
     public Book() {}
 
-    public Book(String title, String author, String description, String genre, int pages, int stock, int borrowed, int age_rating, int year_published) {
+    public Book(String title, String author, String description, String genre, String image_url, int pages, int stock, int borrowed, int age_rating, int year_published) {
         this.title = title;
         this.author = author;
         this.description = description;
         this.genre = genre;
+        this.image_url = image_url;
         this.pages = pages;
         this.stock = stock;
         this.borrowed = borrowed;
@@ -99,6 +102,7 @@ public class Book {
     private String author;
     private String description;
     private String genre;
+    private String image_url;
 
 
     private int pages;
