@@ -3,7 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -30,13 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-<!--        &lt;!&ndash; settings &ndash;&gt;-->
-<!--        <ImageView-->
-<!--            android:id="@+id/btnSettings"-->
-<!--            android:src="@drawable/ic_settings"-->
-<!--            android:layout_width="24dp"-->
-<!--            android:layout_height="24dp"-->
-<!--            android:layout_marginEnd="16dp" />-->
+        <!-- settings -->
+        <ImageView
+            android:id="@+id/btnSettings"
+            android:src="@drawable/ic_settings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp" />
 
         <!-- profile -->
         <ImageView
@@ -76,4 +77,3 @@
     </LinearLayout>
 
 </LinearLayout>
-

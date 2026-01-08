@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="1dp"
+    android:padding="11dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="40dp">
 
     <!-- header profile-->
     <LinearLayout
@@ -37,7 +37,7 @@
             <!-- buat nama jg pake placeholoder dl-->
             <TextView
                 android:id="@+id/tvName"
-                android:text="Victoria Beverli"
+                android:text=""
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -45,21 +45,20 @@
             <!-- placeholder username, text dari strings.xml-->
             <TextView
                 android:id="@+id/tvUsername"
-                android:text="@string/username"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-    <!-- edit button (belom ada pagenya, last prio)-->
-    <Button
-        android:id="@+id/btnEditProfile"
-        android:text="Edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#C4C4C4"
-        android:textColor="#000000"/>
+        <!-- edit button (belom ada pagenya, last prio)-->
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:text="Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#C4C4C4"
+            android:textColor="#000000"/>
 
     </LinearLayout>
 
@@ -114,21 +113,15 @@
         android:layout_height="2dp"
         android:background="#C4C4C4"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-
-    <!-- bottom navbar -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#F4BC43"
-        app:itemIconTint="@color/white"
-        app:itemRippleColor="@android:color/transparent"
-        app:menu="@menu/bottom_nav"
-        app:labelVisibilityMode="unlabeled"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogout"
+        android:text="LogOut"
+        android:backgroundTint="@color/yellow"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        />
 
 </LinearLayout>
