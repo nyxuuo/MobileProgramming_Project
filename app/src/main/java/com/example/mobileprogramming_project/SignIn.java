@@ -14,7 +14,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SignIn extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +32,28 @@ public class SignIn extends AppCompatActivity {
         Button btnSignin = findViewById(R.id.btnSignin);
         TextView tvSignupHere = findViewById(R.id.tvSignupHere);
 
+        mAuth = FirebaseAuth.getInstance();
+
         btnSignin.setOnClickListener(v -> {
-            SharedPreferences prefs = getSharedPreferences("BeeLibPrefs", MODE_PRIVATE);
+            String inputUsername = etUsername.getText().toString();
+            String pass = etPassword.getText().toString();
 
-            String savedUser = prefs.getString("username", "");
-            String savedPass = prefs.getString("password", "");
-
-            if (
-                    etUsername.getText().toString().equals(savedUser) && etPassword.getText().toString().equals(savedPass)
-            ) {
-                prefs.edit().putBoolean("isLoggedIn", true).apply();
-
-                startActivity(new Intent(SignIn.this, MainActivity.class));
-                finish();
-            } else {
-                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+            if (inputUsername.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(this, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            mAuth.signInWithEmailAndPassword(inputUsername, pass)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(SignIn.this, MainActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(SignIn.this, "Invalid username or password",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
 
         tvSignupHere.setOnClickListener(v -> {
@@ -51,5 +62,15 @@ public class SignIn extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            startActivity(new Intent(SignIn.this, MainActivity.class));
+            finish();
+        }
     }
 }

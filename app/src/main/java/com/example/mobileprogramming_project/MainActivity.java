@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -24,26 +27,25 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
     BookAdapter bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs = getSharedPreferences("BeeLibPrefs", MODE_PRIVATE);
+        setContentView(R.layout.activity_main);
 
-        if (!prefs.getBoolean("isLoggedIn", false)) {
-            startActivity(new Intent(this, SignUp.class));
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            startActivity(new Intent(this, SignIn.class));
             finish();
             return;
         }
 
-        setContentView(R.layout.activity_main);
-
-
-        db = FirebaseFirestore.getInstance();
-        BookDao.createBook(db, new Book("Title", "Author", "Description", "Genre", 100, 5, 2, 18, 2023));
+//        BookDao.createBook(db, new Book("Title", "Author", "Description", "Genre", 100, 5, 2, 18, 2023));
 //        BookDao.readBooks(db);
 //        BookDao.updateBook(db, "xlXCEp8tn0IJj72h3bud", "New Title", "New Author", "New Description", "New Genre", 200, 10, 5, 16, 2022);
 //        BookDao.deleteBook(db, "xlXCEp8tn0IJj72h3bud");
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         TextView usernameText = findViewById(R.id.usrname);
-        usernameText.setText(prefs.getString("username", "User"));
+        fetchAndSetUsername(currentUser.getUid(), usernameText);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,9 +72,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onError(Exception e) {
                 e.printStackTrace();
+                Toast.makeText(MainActivity.this, "Error loading books", Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+
+    private void fetchAndSetUsername(String userId, final TextView usernameTextView) {
+        db.collection("users").document(userId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String username = documentSnapshot.getString("username");
+                        if (username != null) {
+                            usernameTextView.setText(username);
+                        } else {
+                            usernameTextView.setText("User");
+                        }
+                    } else {
+                        usernameTextView.setText("User");
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    e.printStackTrace();
+                    usernameTextView.setText("User");
+                });
     }
 
     @Override
