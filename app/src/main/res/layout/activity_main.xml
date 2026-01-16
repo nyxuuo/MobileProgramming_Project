@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- TOP NAVBAR -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:title="BeeLib"
-        app:titleTextColor="@android:color/black"
-        app:menu="@menu/top_nav"/>
-
-    <!-- MAIN CONTENT -->
+    <!-- ================= MAIN CONTENT ================= -->
     <LinearLayout
+        android:id="@+id/mainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <!-- TOP NAVBAR -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:title="BeeLib"
+            app:titleTextColor="@android:color/black"
+            app:menu="@menu/top_nav"/>
 
         <!-- HELLO SECTION -->
         <LinearLayout
@@ -37,28 +38,28 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="Hello, "
                     android:textSize="24sp"
                     android:textColor="@android:color/black"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:id="@+id/usrname"
                     android:textSize="24sp"
                     android:textColor="@android:color/black"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:src="@drawable/bee"/>
             </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:text="Ready to read more?"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
@@ -74,8 +75,8 @@
             android:padding="20dp">
 
             <TextView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:text="Currently Borrowed Book"
                 android:textSize="24sp"
                 android:textColor="@color/white"/>
@@ -84,26 +85,21 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:overScrollMode="never"/>
+                android:padding="8dp"/>
 
-            <!--buat see more-->
             <Button
-                android:id="@+id/btnSeeMore"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/btnSeeMore"
                 android:text="See more"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:paddingTop="8dp"
                 android:layout_gravity="end"/>
-
         </LinearLayout>
 
-        <!-- buat show all book -->
+        <!-- AVAILABLE BOOK -->
         <TextView
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:text="Available Books"
             android:textSize="22sp"
             android:textColor="@android:color/black"
@@ -114,16 +110,24 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="12dp"/>
+            android:paddingHorizontal="20dp"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:background="#F4BC43"
+            android:background="@color/yellow"
             app:itemIconTint="@color/white"
-            app:itemRippleColor="@android:color/transparent"
-            app:menu="@menu/bottom_nav"
-            app:labelVisibilityMode="unlabeled"/>
+            app:menu="@menu/bottom_nav"/>
     </LinearLayout>
-</LinearLayout>
+
+    <!-- ================= SEARCH OVERLAY ================= -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSearchResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:elevation="10dp"
+        android:visibility="gone"/>
+
+</FrameLayout>
