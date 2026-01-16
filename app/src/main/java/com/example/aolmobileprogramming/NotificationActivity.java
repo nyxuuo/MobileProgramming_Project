@@ -14,12 +14,12 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         // buat interactive btns
-        ImageView btnBack = findViewById(R.id.btnBack);
+     //   ImageView btnBack = findViewById(R.id.btnBack);
         ImageView btnProfile = findViewById(R.id.btnProfile);
 //        ImageView btnSettings = findViewById(R.id.btnSettings);
 
         //buat click, kl di klik btn backnya bakal tutup activitynya
-        btnBack.setOnClickListener(v ->finish());
+    //    btnBack.setOnClickListener(v ->finish());
 
         //buat button profile, bakal pindah page ke profile class
         btnProfile.setOnClickListener(v ->

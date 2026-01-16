@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:paddingTop="0dp">
+    tools:context=".MainActivity">
 
     <!-- TOP NAVBAR -->
     <androidx.appcompat.widget.Toolbar
@@ -63,7 +62,7 @@
                 android:text="Ready to read more?"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
-                android:paddingBottom="40dp"/>
+                android:paddingBottom="10dp"/>
         </LinearLayout>
 
         <!-- BORROWED BOOK -->

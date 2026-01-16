@@ -5,15 +5,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
-
+    android:background="#FFFFFF"
+    android:paddingTop="40dp">
 
     <!-- TOP NAVBAR -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="BeeLib"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:title="BeeLib"
+        app:titleTextColor="@color/black"
+        app:navigationIcon="@drawable/ic_back"
+        android:minWidth="18dp"/>
 
 
     <ScrollView
