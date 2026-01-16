@@ -7,22 +7,25 @@ public class LogBookItem {
     public String title;
     public String author;
 
+    public LogBookItem(String bookId, String title, String author, String imgUrl, String status, Timestamp borrowedDate, Timestamp dueDate, Timestamp returnedDate) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.imgUrl = imgUrl;
+        this.status = status;
+        this.borrowedDate = borrowedDate;
+        this.dueDate = dueDate;
+        this.returnedDate = returnedDate;
+    }
+
+    public String imgUrl;
+
     public String status;
     public Timestamp borrowedDate;
     public Timestamp dueDate;
     public Timestamp returnedDate;
 
     public LogBookItem() {} // utk Firestore
-
-    public LogBookItem(String bookId, String title, String author, Timestamp borrowedDate, Timestamp dueDate) {
-        this.bookId = bookId;
-        this.title = title;
-        this.author = author;
-        this.borrowedDate = borrowedDate;
-        this.dueDate = dueDate;
-        this.returnedDate = null;
-        this.status = "BORROWED";
-    }
 
     // GETTER SETTER
     public String getBookId() {
@@ -53,6 +56,9 @@ public class LogBookItem {
     public String getStatus() {
         return status;
     }
+
+    public String getImgUrl() { return imgUrl; }
+    public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }
 
 }
 

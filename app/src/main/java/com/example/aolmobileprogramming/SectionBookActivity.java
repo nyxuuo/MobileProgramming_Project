@@ -7,12 +7,14 @@ import android.view.MenuItem;
 
 import android.widget.Button;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -47,6 +49,7 @@ public class SectionBookActivity extends AppCompatActivity {
         TextView tvStock = findViewById(R.id.tvStock);
         TextView tvGenre = findViewById(R.id.tvGenre);
         TextView tvAge = findViewById(R.id.tvAgeRating);
+        ImageView ivCover = findViewById(R.id.ivCover);
 
         Intent intent = getIntent();
         bookId = getIntent().getStringExtra("BOOK_ID");
@@ -61,6 +64,12 @@ public class SectionBookActivity extends AppCompatActivity {
 
                     Book book = doc.toObject(Book.class);
                     if (book == null) return;
+
+                    Glide.with(this)
+                            .load(book.getImage_url())
+                            .placeholder(R.drawable.placeholder_image)
+                            .error(R.drawable.broken_image)
+                            .into(ivCover);
 
                     tvTitle.setText(book.getTitle());
                     tvAuthor.setText(book.getAuthor());
@@ -116,6 +125,7 @@ public class SectionBookActivity extends AppCompatActivity {
                         log.put("bookId", bookId);
                         log.put("title", book.getTitle());
                         log.put("author", book.getAuthor());
+                        log.put("imgUrl", book.getImage_url());
                         log.put("borrowedDate", borrowedDate);
                         log.put("dueDate", dueDate);
                         log.put("returnedDate", null);

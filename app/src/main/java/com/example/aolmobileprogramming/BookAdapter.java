@@ -44,6 +44,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         holder.tvTitle.setText(book.getTitle());
         holder.tvAuthor.setText(book.getAuthor());
+        holder.tvStock.setText("Stock: " + book.getStock());
 
         String placeholder_image = "";
 
@@ -60,6 +61,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             intent.putExtra("BOOK_TITLE", book.getTitle());
             intent.putExtra("BOOK_AUTHOR", book.getAuthor());
             intent.putExtra("BOOK_DESC", book.getDescription());
+            intent.putExtra("BOOK_STOCK", book.getStock());
 
             v.getContext().startActivity(intent);
         });

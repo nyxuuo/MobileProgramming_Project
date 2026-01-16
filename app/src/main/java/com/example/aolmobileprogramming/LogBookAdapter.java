@@ -3,14 +3,20 @@ package com.example.aolmobileprogramming;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.Timestamp;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHolder> {
 
@@ -19,14 +25,15 @@ public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHold
 
     public LogBookAdapter(List<LogBookItem> items) {
         if (items != null) {
-            this.items = items;
-            this.allItems = new ArrayList<>(items);
+            this.items.addAll(items);
+            this.allItems.addAll(items);
         }
     }
 
     // dipanggil acvity
     public void setData(List<LogBookItem> newItems) {
         items.clear();
+        allItems.clear();
 
         if (newItems != null) {
             items.addAll(newItems);
@@ -43,7 +50,7 @@ public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHold
     }
 
 
-    // search/filtr
+    // search/filter
     public void filter(String keyword) {
         items.clear();
 
@@ -77,15 +84,37 @@ public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHold
 
         h.tvTitle.setText(item.getTitle());
         h.tvAuthor.setText(item.getAuthor());
-        h.tvBorrowed.setText("Borrowed: " + item.getBorrowedDate());
+        h.tvBorrowed.setText("Borrowed: " + formatDate(item.getBorrowedDate()));
+        if (item.getDueDate() != null) {
+            h.tvDue.setText("Due: " + formatDate(item.getDueDate()));
+        } else {
+            h.tvDue.setText("Due: null");
+        }
 
         if ("RETURNED".equals(item.getStatus())) {
             h.tvStatus.setText("Returned");
             h.tvReturned.setVisibility(View.VISIBLE);
             h.tvReturned.setText("Returned: " + item.getReturnedDate());
+        } else if ("OVERDUE".equals(item.getStatus())) {
+            h.tvStatus.setText("Overdue");
+            h.tvStatus.setTextColor(h.itemView.getContext().getResources().getColor(android.R.color.holo_red_dark));
+            h.tvReturned.setVisibility(View.GONE);
         } else {
             h.tvStatus.setText("Borrowed");
+            h.tvStatus.setTextColor(h.itemView.getContext().getResources().getColor(android.R.color.black));
             h.tvReturned.setVisibility(View.GONE);
+        }
+
+        String imageUrl = item.getImgUrl();
+
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(h.itemView.getContext())
+                    .load(imageUrl)
+                    .placeholder(R.drawable.placeholder_image)
+                    .error(R.drawable.broken_image)
+                    .into(h.ivCover);
+        } else {
+            h.ivCover.setImageResource(R.drawable.placeholder_image);
         }
     }
 
@@ -95,9 +124,19 @@ public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHold
         return items.size();
     }
 
+    private String formatDate(Timestamp timestamp) {
+        if (timestamp == null) return "-";
+
+        java.util.Date date = timestamp.toDate();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        return sdf.format(date);
+    }
+
     //viewholder
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvAuthor, tvBorrowed, tvDue, tvStatus, tvReturned;
+        ImageView ivCover;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +146,8 @@ public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHold
             tvDue = itemView.findViewById(R.id.tvDue);
             tvStatus = itemView.findViewById(R.id.tvStatus);
             tvReturned = itemView.findViewById(R.id.tvReturned);
+
+            ivCover = itemView.findViewById(R.id.ivCover);
         }
     }
 

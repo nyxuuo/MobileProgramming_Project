@@ -46,9 +46,9 @@ public class BorrowedBookAdapter extends RecyclerView.Adapter<BorrowedBookAdapte
         holder.btnReturn.setText("Return");
 
         Glide.with(holder.itemView.getContext())
-                .load(book.getImage_url()) // Load the image URL from the Book object
-                .placeholder(R.drawable.placeholder_image) // Image to show while loading
-                .error(R.drawable.broken_image) // Image to show if loading fails
+                .load(book.getImage_url())
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.broken_image)
                 .into(holder.ivCover);
 
         //pas mo return
