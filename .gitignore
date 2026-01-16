@@ -14,3 +14,10 @@
 .cxx
 local.properties
 /app/google-services.json
+# android test folder
+app/src/androidTest/
+app/src/test/
+.idea/
+.gradle/
+*.iml
+
