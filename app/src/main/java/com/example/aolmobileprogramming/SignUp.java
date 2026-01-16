@@ -69,7 +69,7 @@ public class SignUp extends AppCompatActivity {
         btnCalendar.setOnClickListener(openCalendar);
 
         btnSignup.setOnClickListener(v ->{
-            String inputEmail = etUsername.getText().toString().trim();
+            String inputEmail = etEmail.getText().toString().trim();
             String username = etUsername.getText().toString().trim();
             String pass = etPassword.getText().toString();
             String confirm = etConfirmPassword.getText().toString();
