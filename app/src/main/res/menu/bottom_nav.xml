@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
         android:title="Home"
+        app:showAsAction="always"
         />
 
     <item
         android:id="@+id/nav_borrowed_book"
         android:icon="@drawable/ic_borrowed_book"
-        android:title="Borrowed Book"/>
+        android:title="Borrowed Book"
+        app:showAsAction="always"/>
 
 
     <item
         android:id="@+id/nav_book_section"
         android:icon="@drawable/ic_book_section"
-        android:title="Book Section"/>
+        android:title="Book Section"
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/nav_logbook"
         android:icon="@drawable/ic_logbook"
-        android:title="Logbook"/>
+        android:title="Logbook"
+        app:showAsAction="always"/>
 
 </menu>

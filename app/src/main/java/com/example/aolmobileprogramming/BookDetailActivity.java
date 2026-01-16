@@ -104,6 +104,7 @@ public class BookDetailActivity extends AppCompatActivity {
         log.put("author", book.getAuthor());
         log.put("borrowedDate", borrowedDate);
         log.put("dueDate", new Timestamp(cal.getTime()));
+        log.put("imgUrl", book.getImage_url());
         log.put("returnedDate", null);
         log.put("status", "BORROWED");
 
