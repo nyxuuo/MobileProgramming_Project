@@ -14,36 +14,25 @@ import java.util.List;
 
 public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHolder> {
 
-    private List<LogBookItem> items = new ArrayList<>();
-    private List<LogBookItem> allItems = new ArrayList<>();
+    private final List<LogBookItem> items = new ArrayList<>();
+    private final List<LogBookItem> allItems = new ArrayList<>();
 
-    public LogBookAdapter(List<LogBookItem> items) {
-        if (items != null) {
-            this.items = items;
-            this.allItems = new ArrayList<>(items);
-        }
-    }
+    public LogBookAdapter() {}
 
-    // dipanggil acvity
+    // DIPANGGIL ACTIVITY
     public void setData(List<LogBookItem> newItems) {
         items.clear();
+        allItems.clear();
 
         if (newItems != null) {
             items.addAll(newItems);
             allItems.addAll(newItems);
         }
+
         notifyDataSetChanged();
     }
 
-    public void setAllData(List<LogBookItem> data) {
-        allItems.clear();
-        if (data != null) {
-            allItems.addAll(data);
-        }
-    }
-
-
-    // search/filtr
+    // FILTER SEARCH
     public void filter(String keyword) {
         items.clear();
 
@@ -60,8 +49,6 @@ public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHold
         }
         notifyDataSetChanged();
     }
-
-    //recycler view
 
     @NonNull
     @Override
@@ -89,27 +76,24 @@ public class LogBookAdapter extends RecyclerView.Adapter<LogBookAdapter.ViewHold
         }
     }
 
-
     @Override
     public int getItemCount() {
         return items.size();
     }
 
-    //viewholder
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvAuthor, tvBorrowed, tvDue, tvStatus, tvReturned;
+        TextView tvTitle, tvAuthor, tvBorrowed, tvStatus, tvReturned;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
             tvBorrowed = itemView.findViewById(R.id.tvBorrowed);
-            tvDue = itemView.findViewById(R.id.tvDue);
             tvStatus = itemView.findViewById(R.id.tvStatus);
             tvReturned = itemView.findViewById(R.id.tvReturned);
         }
     }
-
 }
+
 
 

@@ -56,14 +56,11 @@ public class LogBookActivity extends AppCompatActivity {
         borrowedList = new ArrayList<>();
         returnedList = new ArrayList<>();
 
-        adapter = new LogBookAdapter(borrowedList);
+        adapter = new LogBookAdapter();
         rvLogbook.setAdapter(adapter);
 
         //pindah2 tab
         tabBorrowed.setOnClickListener(v -> {
-            Log.d("LOGBOOK", "Borrowed size = " + borrowedList.size());
-            Log.d("LOGBOOK", "Returned size = " + returnedList.size());
-
             adapter.setData(borrowedList);
             highlightTab(true);
         });
@@ -72,6 +69,7 @@ public class LogBookActivity extends AppCompatActivity {
             adapter.setData(returnedList);
             highlightTab(false);
         });
+
 
 
         loadLogbook();
@@ -121,7 +119,7 @@ public class LogBookActivity extends AppCompatActivity {
                     Log.d("LOGBOOK", "Borrowed loaded = " + borrowedList.size());
                     Log.d("LOGBOOK", "Returned loaded = " + returnedList.size());
 
-                    adapter.setAllData(new ArrayList<>(borrowedList));
+//                    adapter.setAllData(new ArrayList<>(borrowedList));
                     adapter.setData(new ArrayList<>(borrowedList));
                 });
     }

@@ -7,136 +7,42 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-
-    <!-- TOP NAVBAR -->
+    <!-- top navbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="BeeLib"/>
+        android:background="@android:color/transparent"
+        app:title="BeeLib"
+        app:titleTextColor="@android:color/black"
+        app:menu="@menu/top_nav"/>
 
+    <!-- title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Available Books"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:padding="16dp"/>
 
-    <ScrollView
+    <!-- list all books -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAllBooks"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="12dp"/>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- TOP CARD -->
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/ivBookCover"
-                    android:layout_width="120dp"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_placeholder_book"/>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:paddingStart="16dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tvTitle"
-                        android:text=""
-                        android:textStyle="bold"
-                        android:textSize="18sp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tvAuthor"
-                        android:text=""
-                        android:textSize="14sp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tvAgeRating"
-                        android:text=""
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:id="@+id/tvStock"
-                        android:textSize="12sp"/>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Borrow"
-                        android:id="@+id/btnBorrow"
-                        android:layout_marginTop="12dp"
-                        android:backgroundTint="#0D3B66"
-                        android:textColor="@android:color/white"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- SECTION -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Detail"
-                android:textStyle="bold"
-                android:textColor="#F4BC43"
-                android:paddingTop="16dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvDescription"
-                android:text=""
-                android:paddingTop="8dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvGenre"
-                android:text=""
-                android:paddingTop="8dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                />
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- BOTTOM NAVBAR -->
+    <!-- bttom navbar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#F4BC43"
         app:itemIconTint="@color/white"
+        app:itemRippleColor="@android:color/transparent"
         app:menu="@menu/bottom_nav"
         app:labelVisibilityMode="unlabeled"/>
 
