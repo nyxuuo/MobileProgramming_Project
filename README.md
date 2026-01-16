@@ -58,3 +58,8 @@ https://www.figma.com/design/EcRMDAjSpl0EJcUKtkPrec/BeeLib?node-id=0-1&t=nfrTVh8
 ### Library Tambahan
 - **Picasso** *(planned)*  
   Digunakan untuk menampilkan gambar dari URL secara efisien dan mudah.
+
+---
+
+## 🔗 Canva (PPT) Link
+https://www.canva.com/design/DAG78LzW58o/1r1tKwJ2NZGSz8MXooPicA/view?utm_content=DAG78LzW58o&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7aaa97b063
