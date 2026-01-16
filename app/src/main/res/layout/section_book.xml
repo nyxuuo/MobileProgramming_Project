@@ -19,7 +19,6 @@
         app:navigationIcon="@drawable/ic_back"
         android:minWidth="18dp"/>
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"

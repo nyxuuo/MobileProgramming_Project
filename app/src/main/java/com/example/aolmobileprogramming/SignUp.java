@@ -112,9 +112,11 @@ public class SignUp extends AppCompatActivity {
                                         });
 
                             }
-                        } else {
-                            Toast.makeText(SignUp.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                        } else if (!task.isSuccessful()) {
+                            Toast.makeText(this,
+                                    task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                            return;
                         }
                     });
         });

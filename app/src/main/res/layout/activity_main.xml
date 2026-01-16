@@ -116,7 +116,6 @@
             android:layout_weight="1"
             android:padding="12dp"/>
 
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"

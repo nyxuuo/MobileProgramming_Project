@@ -38,7 +38,6 @@ public class SectionBookActivity extends AppCompatActivity {
 
         toolbar.setNavigationOnClickListener(v -> finish());
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -48,8 +47,6 @@ public class SectionBookActivity extends AppCompatActivity {
         TextView tvStock = findViewById(R.id.tvStock);
         TextView tvGenre = findViewById(R.id.tvGenre);
         TextView tvAge = findViewById(R.id.tvAgeRating);
-
-
 
         Intent intent = getIntent();
         bookId = getIntent().getStringExtra("BOOK_ID");

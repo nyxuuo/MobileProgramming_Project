@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class NotificationActivity extends AppCompatActivity {
@@ -13,13 +14,17 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
-        // buat interactive btns
-     //   ImageView btnBack = findViewById(R.id.btnBack);
-        ImageView btnProfile = findViewById(R.id.btnProfile);
-//        ImageView btnSettings = findViewById(R.id.btnSettings);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        //buat click, kl di klik btn backnya bakal tutup activitynya
-    //    btnBack.setOnClickListener(v ->finish());
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        // buat interactive btns
+        ImageView btnProfile = findViewById(R.id.btnProfile);
 
         //buat button profile, bakal pindah page ke profile class
         btnProfile.setOnClickListener(v ->
