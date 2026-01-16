@@ -4,11 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -42,6 +44,12 @@ public class BorrowedBookAdapter extends RecyclerView.Adapter<BorrowedBookAdapte
         holder.tvTitle.setText(book.getTitle());
         holder.tvAuthor.setText(book.getAuthor());
         holder.btnReturn.setText("Return");
+
+        Glide.with(holder.itemView.getContext())
+                .load(book.getImage_url()) // Load the image URL from the Book object
+                .placeholder(R.drawable.placeholder_image) // Image to show while loading
+                .error(R.drawable.broken_image) // Image to show if loading fails
+                .into(holder.ivCover);
 
         //pas mo return
         holder.btnReturn.setOnClickListener(v -> {
@@ -118,12 +126,14 @@ public class BorrowedBookAdapter extends RecyclerView.Adapter<BorrowedBookAdapte
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvAuthor;
         Button btnReturn;
+        ImageView ivCover;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
             btnReturn = itemView.findViewById(R.id.btnReturn);
+            ivCover = itemView.findViewById(R.id.ivCover);
         }
     }
 }

@@ -8,7 +8,7 @@
 
     <!-- buat foto bukunya, pake placeholder dlu yah -->
     <ImageView
-        android:id="@+id/ivBookCover"
+        android:id="@+id/ivCover"
         android:src="@drawable/ic_placeholder_book"
         android:layout_width="match_parent"
         android:layout_height="120dp"

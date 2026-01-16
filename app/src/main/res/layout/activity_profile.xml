@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="11dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,120 +15,130 @@
         app:navigationIcon="@drawable/ic_back"
         android:minWidth="18dp"/>
 
-    <!-- header profile-->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:padding="15dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigation">
 
-        <!-- buat profile, blum sambung db. logo profile placeholder dl  -->
-        <ImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_profile" />
-
-        <!-- Linear layout buat name & username-->
         <LinearLayout
             android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
+            android:padding="11dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_marginTop="40dp">
 
-            <!-- buat nama jg pake placeholoder dl-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ivProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_profile" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:text="Name"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvUsername"
+                        android:text="Username"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnEditProfile"
+                    android:text="Edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#C4C4C4"
+                    android:textColor="#000000"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#C4C4C4"/>
+
             <TextView
-                android:id="@+id/tvName"
-                android:text=""
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvMenuSettings"
+                android:text="Settings"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <!-- placeholder username, text dari strings.xml-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#C4C4C4"/>
+
             <TextView
-                android:id="@+id/tvUsername"
-                android:textSize="12sp"
+                android:id="@+id/tvMenuAboutUs"
+                android:text="About us"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#C4C4C4"/>
+
+            <TextView
+                android:id="@+id/tvMenuHelp"
+                android:text="Help"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#C4C4C4"/>
+
+            <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLogout"
+                android:text="Log Out"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                />
 
         </LinearLayout>
+    </ScrollView>
 
-        <!-- edit button (belom ada pagenya, last prio)-->
-        <Button
-            android:id="@+id/btnEditProfile"
-            android:text="Edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#C4C4C4"
-            android:textColor="#000000"/>
-
-    </LinearLayout>
-
-    <!-- divider, buat settings, about us, help (page jg blm ada)-->
-    <View
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#C4C4C4"/>
-
-    <!-- settings-->
-    <TextView
-        android:id="@+id/tvMenuSettings"
-        android:text="Settings"
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <!-- divider, buat settings, about us, help (page jg blm ada)-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#C4C4C4"/>
-
-    <!-- ABOUT US-->
-    <TextView
-        android:id="@+id/tvMenuAboutUs"
-        android:text="About us"
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <!-- divider, buat settings, about us, help (page jg blm ada)-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#C4C4C4"/>
-
-    <!-- HELP-->
-    <TextView
-        android:id="@+id/tvMenuHelp"
-        android:text="Help"
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <!-- divider, buat settings, about us, help (page jg blm ada)-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#C4C4C4"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLogout"
-        android:text="LogOut"
-        android:backgroundTint="@color/yellow"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        />
-
-</LinearLayout>
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="#F4BC43"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="@android:color/transparent"
+        app:menu="@menu/bottom_nav"
+        app:labelVisibilityMode="unlabeled"/>
+</RelativeLayout>

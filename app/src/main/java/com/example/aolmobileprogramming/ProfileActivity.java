@@ -10,13 +10,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         Button btnEditProfile = findViewById(R.id.btnEditProfile);
         TextView tvMenuSettings = findViewById(R.id.tvMenuSettings);
@@ -28,17 +37,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         Button btnLogout = findViewById(R.id.btnLogout);
 
-        SharedPreferences prefs =
-                getSharedPreferences("BeeLibPrefs", MODE_PRIVATE);
-
-        String username = prefs.getString("username", null);
-
-        if (username != null) {
-            tvName.setText(username);
-            tvUsername.setText("@" + username);
-        } else {
-            tvName.setText("Unknown User");
-            tvUsername.setText("@unknown");
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            fetchUserData(currentUser.getUid(), tvName, tvUsername);
         }
 
         // placeholder
@@ -60,17 +61,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         //listener logout
         btnLogout.setOnClickListener(v -> {
-
-            prefs.edit()
-                    .putBoolean("isLoggedIn", false)
-                    .remove("username")
-                    .apply();
-
+            mAuth.signOut();
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(ProfileActivity.this, SignUp.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Intent intent = new Intent(ProfileActivity.this, SignIn.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            finish();
         });
 
 
@@ -106,4 +102,30 @@ public class ProfileActivity extends AppCompatActivity {
             return false;
         });
     }
-}
+
+        private void fetchUserData(String userId, TextView tvName, TextView tvUsername) {
+            db.collection("users").document(userId).get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String username = documentSnapshot.getString("username");
+                            if (username != null && !username.isEmpty()) {
+                                tvName.setText(username);
+                                tvUsername.setText("@" + username);
+                            } else {
+                                String email = documentSnapshot.getString("email");
+                                tvName.setText(email != null ? email.split("@")[0] : "User");
+                                tvUsername.setText(email != null ? email : "@unknown");
+                            }
+                        } else {
+                            Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show();
+                            tvName.setText("Unknown User");
+                            tvUsername.setText("@unknown");
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to fetch profile data.", Toast.LENGTH_SHORT).show();
+                        tvName.setText("Unknown User");
+                        tvUsername.setText("@unknown");
+                    });
+            }
+        }

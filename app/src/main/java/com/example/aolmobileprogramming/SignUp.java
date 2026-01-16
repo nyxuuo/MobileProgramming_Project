@@ -17,24 +17,36 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
 
         TextView tvBirthday = findViewById(R.id.tvBirthday);
         ImageView btnCalendar = findViewById(R.id.btnCalendar);
 
+        EditText etEmail = findViewById(R.id.email);
         EditText etUsername = findViewById(R.id.username);
         EditText etPassword = findViewById(R.id.password);
         EditText etConfirmPassword = findViewById(R.id.confirm_password);
         Button btnSignup = findViewById(R.id.btnSignup);
         TextView tvSigninHere = findViewById(R.id.tvSigninHere);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         View.OnClickListener openCalendar = new View.OnClickListener() {
             @Override
@@ -57,14 +69,19 @@ public class SignUp extends AppCompatActivity {
         btnCalendar.setOnClickListener(openCalendar);
 
         btnSignup.setOnClickListener(v ->{
-            String inputUsername = etUsername.getText().toString().trim();
-
+            String inputEmail = etUsername.getText().toString().trim();
+            String username = etUsername.getText().toString().trim();
             String pass = etPassword.getText().toString();
             String confirm = etConfirmPassword.getText().toString();
+            String dob = tvBirthday.getText().toString();
 
-            if (inputUsername.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
+            if (username.isEmpty() || pass.isEmpty() || inputEmail.isEmpty()) {
+                Toast.makeText(this, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
                 return;
+            }
+
+            if (dob.equals("dd / mm / yyyy")) {
+                Toast.makeText(this, "Please select your date of birth", Toast.LENGTH_SHORT).show();
             }
 
             if (!pass.equals(confirm)) {
@@ -72,15 +89,34 @@ public class SignUp extends AppCompatActivity {
                 return;
             }
 
-            SharedPreferences prefs = getSharedPreferences("BeeLibPrefs", MODE_PRIVATE);
-            prefs.edit()
-                    .putString("username", inputUsername)
-                    .putString("password", pass)
-                    .putBoolean("isLoggedIn", true)
-                    .apply();
+            mAuth.createUserWithEmailAndPassword(inputEmail, pass)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            if (firebaseUser != null) {
+                                String userId = firebaseUser.getUid();
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("email", inputEmail);
+                                user.put("username", username);
+                                user.put("dob", dob);
 
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+                                db.collection("users").document(userId)
+                                        .set(user)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Toast.makeText(SignUp.this, "Sign up successful.", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(SignUp.this, MainActivity.class));
+                                            finish();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(SignUp.this, "Failed to save user data.", Toast.LENGTH_SHORT).show();
+                                        });
+
+                            }
+                        } else {
+                            Toast.makeText(SignUp.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
 
         tvSigninHere.setOnClickListener(v -> {
