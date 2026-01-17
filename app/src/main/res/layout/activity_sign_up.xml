@@ -28,7 +28,7 @@
                 android:text="BeeLib"
                 android:textSize="32sp"
                 android:textStyle="bold"
-                android:paddingTop="150dp"
+                android:paddingTop="190dp"
                 android:paddingLeft="140dp"
                 />
 
