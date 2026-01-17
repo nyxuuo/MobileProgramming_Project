@@ -196,6 +196,23 @@ public class LogBookActivity extends AppCompatActivity {
             return false;
         });
     }
+
+    //top navbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_notification) {
+            startActivity(new Intent(this, NotificationActivity.class));
+            return true;
+        }
+        else if (id == R.id.action_profile) {
+            startActivity(new Intent(this, ProfileActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 

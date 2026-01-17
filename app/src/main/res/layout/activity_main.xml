@@ -118,7 +118,8 @@
             android:layout_height="80dp"
             android:background="@color/yellow"
             app:itemIconTint="@color/white"
-            app:menu="@menu/bottom_nav"/>
+            app:menu="@menu/bottom_nav"
+            app:labelVisibilityMode="unlabeled"/>
     </LinearLayout>
 
     <!-- ================= SEARCH OVERLAY ================= -->
