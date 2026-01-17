@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- buat foto bukunya, pake placeholder dlu yah -->
+    <ImageView
+        android:id="@+id/ivCover"
+        android:src="@drawable/ic_placeholder_book"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop" />
+
+    <!-- JUDUL -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:text=""
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <!-- authorny -->
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:text=""
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <!-- rating (info) -->
+    <TextView
+        android:id="@+id/tvInfo"
+        android:text=""
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        />
+
+    <!-- button utk return-->
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return"
+        android:backgroundTint="#F44336"
+        android:textColor="@android:color/white"/>
+
+
+</LinearLayout>
